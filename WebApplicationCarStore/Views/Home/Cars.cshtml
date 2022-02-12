@@ -1,0 +1,347 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Cars</h1>
+</div>
+
+<div>
+
+</div>
+
+<div>
+    <div id="navModels">
+        Tyt cars
+    </div>
+
+    <div id="imgModels">
+
+    </div>
+</div>
+
+
+<div>
+    <div id="mainModels">
+        Tyt activite model
+    </div>
+
+    <div style="display: flex; margin-top: 3rem;">
+        <div style="margin-right: 25%; margin-left: 20%" id="imgMainModels">
+
+        </div>
+
+        <div id="mainModifications">
+            Tyt modifications
+        </div>
+    </div>
+    
+    
+</div>
+
+
+
+
+@section Scripts
+{
+    <script>
+
+        let apiModels = "/api/ApiModels"
+        let getModifications = "/api/GetModifications"
+        let getModificationColor = "/api/GetModificationColors"
+        let getModificationColorImg = "/api/GetModificationColorsImg"
+
+        function onError(err) {
+            console.log("Error");
+            console.log(err);
+        }
+
+
+        function getModificationColorImgs(obj, color_id) {
+            console.log(obj);
+            console.log(color_id);
+            fetch(getModificationColorImg + "/" + obj)
+                .then(res => {
+                    if (res.status !== 200) {
+                        onError(res);
+                        return;
+                    }
+                    return res.json();
+                })
+                .then(models => {
+
+                    console.log("Сoбираюсь сменить картинку!");
+
+                    models.map(modification_color_img => {
+
+                        console.log(modification_color_img);
+                        console.log("Должен получить картинку!");
+                        if (modification_color_img.colorId == color_id) {
+                            let divModel = document.getElementById("imgMainModels");
+                            divModel.innerHTML = "";
+
+                            console.log(modification_color_img);
+
+                            let img = document.createElement("img");
+
+                            img.style.height = "200px"
+                            img.style.marginLeft = "34%"
+                            img.style.marginTop = "2rem"
+
+                            img.src = modification_color_img.imgUrl;
+
+                            divModel.appendChild(img);
+                        }
+                        else {
+                            console.log("НЕТ");
+                        }
+  
+                    })
+                })
+                .catch(err => { onError(err); })
+        }
+
+
+
+        function getModificationColors(modification_id) {
+            console.log(modification_id);
+            fetch(getModificationColor + "/" + modification_id)
+                .then(res => {
+                    if (res.status !== 200) {
+                        onError(res);
+                        return;
+                    }
+                    return res.json();
+                })
+                .then(models => {
+                    let div = document.getElementById("mainModifications")
+                    div.innerHTML = "";
+                    let ul = document.createElement("ul");
+
+                    ul.style.listStyleType = 'none';
+                    ul.style.display = "inline-block"
+                    ul.style.backgroundColor = "rgb(0, 0, 0, 0.2)";
+                    ul.style.paddingTop = "1rem";
+                    ul.style.paddingBottom = "1rem";
+                    ul.style.paddingRight = "2rem";
+                    ul.style.marginLeft = "3rem";
+                    ul.style.marginTop = "2rem";
+                    ul.style.borderRadius = "7px";
+                    ul.style.border = "2px solid black";
+          
+
+                    models.map(modification_color => {
+
+
+
+                        let li = document.createElement("li");
+
+                        li.style.marginTop = "15px";
+                        li.style.marginBottom = "15px";
+
+                        //li.innerText = modification_color.name;
+                        li.id = modification_color.id;
+                        console.log(modification_color);
+
+
+                        let img = document.createElement("img");
+                        img.src = "";
+
+                        img.style.height = "80px"
+                        img.style.borderRadius = "50px"
+
+                        img.src = modification_color.imgUrl;
+
+                        li.onclick = function () {
+                            console.log("Иду за картинкой!");
+                            getModificationColorImgs(modification_id, modification_color.id);
+                        }
+
+                        li.appendChild(img);
+                        ul.appendChild(li);
+
+                    })
+                    div.appendChild(ul);
+                })
+                .catch(err => { onError(err); })
+        }
+
+     
+
+        function getModification(model_id) {
+            console.log(model_id);
+            fetch(getModifications + "/" + model_id)
+                .then(res => {
+                    if (res.status !== 200) {
+                        onError(res);
+                        return;
+                    }
+                    return res.json();
+                })
+                .then(models => {
+                    let div = document.getElementById("mainModels");
+                    let ul = document.createElement("ul");
+
+
+                    models.map(modification => {
+                        let li = document.createElement("li");
+
+                        li.style.backgroundColor = "rgb(0, 0, 0, 0.3)"
+                        li.style.height = "5"
+                        li.style.width = "260px"
+                        li.style.borderRadius = "5px"
+                        li.style.border = "3px solid rgb(0, 0, 0, 0.4)"
+                        li.style.marginTop = "1rem"
+                        li.style.marginLeft = "1rem"
+                        li.style.fontSize = "26px"
+                        li.style.display = "inline-block"
+                        li.style.textAlign = "center"
+                        li.style.color = "rgb(255, 255, 255, 0.9)"
+                        li.style.paddingTop = "2px"
+
+                        li.innerText = modification.name;
+                        li.id = modification.id;
+                        console.log(modification);
+
+                        li.onclick = function () {
+                            let divModel = document.getElementById("imgMainModels");
+                            divModel.innerHTML = "";
+
+                            console.log(modification);
+
+                            let img = document.createElement("img");
+
+                            img.style.height = "200px"
+                            img.style.marginLeft = "34%"
+                            img.style.marginTop = "2rem"
+
+
+                            img.src = modification.imgUrl;
+
+                            getModificationColors(modification.id);
+                            console.log("Получаю картинки цветов");
+
+                            divModel.appendChild(img);
+                        }
+
+                        ul.appendChild(li);
+
+                    })
+                    div.innerHTML = "";
+
+                    div.appendChild(ul);
+
+                })
+                .catch(err => { onError(err); })
+        }
+
+       
+        function renderModels(htmlTag) {
+            console.log(htmlTag.id);
+            fetch(apiModels + "/" + htmlTag.id)
+                .then(res => {
+                    if (res.status !== 200) {
+                        onError(res);
+                        return;
+                    }
+                    //console.log(res);
+                    return res.json();
+                })
+                .then(model => {
+                    //console.log(model);
+
+                    let divModel = document.getElementById("imgModels");
+                    divModel.innerHTML = "";
+                    console.log(model);
+                    let img = document.createElement("img");
+                    img.style.height = "135px"
+                    img.src = model.imgUrl;
+
+                    divModel.innerHTML = "";
+
+                    img.onclick = function () {
+                        getModification(model.id);
+                    }
+
+                    divModel.appendChild(img);
+
+                })
+                .catch(err => { onError(err) });
+        }
+
+
+        function renderModelsNav(models) {
+            //console.log(items);
+            let div = document.getElementById("navModels")
+            div.innerHTML = "";
+
+            let ul = document.createElement("ul");
+            ul.style.listStyleType = 'none';
+
+            /*
+            for (var model of models) {
+                let li = document.createElement("li");
+                li.innerText = model.name;
+                li.id = model.id;
+                ul.appendChild(li);
+            }
+            */
+
+            models.map(model => {
+                let li = document.createElement("li");
+
+                li.style.backgroundColor = "rgb(0, 0, 0, 0.5)"
+                li.style.height = "250px"
+                li.style.width = "260px"
+                li.style.borderRadius = "5px"
+                li.style.border = "3px solid rgb(0, 0, 0, 0.8)"
+                li.style.marginTop = "1rem"
+                li.style.marginLeft = "1rem"
+                li.style.fontSize = "42px"
+                li.style.display = "inline-block"
+                li.style.textAlign = "center"
+                li.style.color = "rgb(255, 255, 255, 0.8)"
+                li.style.paddingTop = "3px"
+
+                li.innerText = model.name;
+                li.id = model.id;
+
+                let img = document.createElement("img");
+
+                img.style.marginTop = "2rem"
+                img.style.height = "105px"
+
+                img.src = model.imgUrl;
+
+                img.onclick = function () {
+                    getModification(model.id);
+                }
+                li.appendChild(img);
+               
+                ul.appendChild(li);
+            });
+
+            div.appendChild(ul);
+        }
+
+        function getAllModels() {
+            fetch(apiModels)
+                .then(res => {
+                    if (res.status !== 200) {
+                        onError(res);
+                        return;
+                    }
+                    //console.log(res);
+                    return res.json();
+                })
+                .then(models => {
+                    renderModelsNav(models);
+                })
+                .catch(err => { onError(err) });
+        }
+
+        getAllModels();
+
+    </script>
+}
+

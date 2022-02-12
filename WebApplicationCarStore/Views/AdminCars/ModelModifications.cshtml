@@ -1,0 +1,130 @@
+﻿@model IEnumerable<WebApplicationCarStore.Data.Entities.Modification>
+
+@{
+    ViewData["Title"] = "Modification for" + @ViewBag.OpenModel.Name;
+    string aId;
+    string hId;
+    string cId;
+}
+
+<h1>Model: @ViewBag.OpenModel.Name</h1>
+<img src="@ViewBag.OpenModel.ImgUrl" class="color_car" />
+
+<div class="row">
+    @{
+        aId = "acccordionModelModifications" + @ViewBag.OpenModel.Id;
+    }
+
+    <div class="accordion" id="acccordionModelModifications@ViewBag.OpenModel.Id">
+        @foreach (var item in Model)
+        {
+            {
+                hId = "heading" + @item.Id;
+                cId = "collapse" + @item.Id;
+            }
+
+
+            <div class="accordion-item" style="margin-top: 1rem;">
+                <h2 class="accordion-header" id=@hId>
+                    <button class="accordion-button"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target=#@cId
+                            aria-expanded="true"
+                            aria-controls=@cId>
+                        <h5 class="card-title">@item.Name</h5>
+                    </button>
+                </h2>
+
+                <div id=@cId
+                     class="accordion-collapse collapse show"
+                     aria-labelledby=@hId
+                     data-bs-parent=#@aId>
+                    <div class="accordion-body">
+                        @foreach (var color in item.ModificationColors)
+                        {
+                            <img class="color_thumb" src="@color.Color.ImgUrl" />
+                        }
+                    </div>
+
+                    <div class="accordion-body">
+
+
+
+                        <!--
+                           <div class="accordion-body">
+                               <form asp-action="CreateModificationColors" enctype="multipart/form-data">
+                                   <input type="hidden" name="ModelId" value="ViewBag.OpenModel.Id">
+                                   <input type="hidden" name="ModificationId" value="item.Id" class="control-label">
+
+                                   <div class="form-group">
+                                       <label name="Slug" class="control-label"></label>
+                                       <input name="Slug" class="form-control" />
+                                   </div>
+                                   <div class="form-group">
+
+                                       foreach (var color in item.ModificationColors)
+                                       {
+                                           <p href="#"><img class="color_thumb" src="color.Color.ImgUrl" /></p>
+                                       }
+                                   </div>
+                                   <div class="form-group">
+                                       <label name="ImgUrl" class="control-label"></label>
+                                       <input type="file" name="fileToStorage" class="form-control" />
+                                   </div>
+                                   <div class="form-group">
+                                       <input type="submit" value="Create" class="btn btn-primary" />
+                                   </div>
+                               </form>
+                           </div>
+                        -->
+                    </div>
+                </div>
+
+            </div>
+        }
+
+        <div class="accordion-item" style="margin-top:3rem;">
+            <h2 class="accordion-header" id="hAddNew">
+                <button class="accordion-button"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#cAddNew"
+                        aria-expanded="true"
+                        aria-controls="cAddNew">
+                    <h5 class="card-title">
+                        Добавить новую модификацию
+                    </h5>
+                </button>
+            </h2>
+
+            <div id="cAddNew"
+                 class="accordion-collapse collapse show"
+                 aria-labelledby="hAddNew"
+                 data-bs-parent=#@aId>
+                <div class="accordion-body">
+                    <form asp-action="CreateModifications" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input type="hidden" name="ModelId" value="@ViewBag.OpenModel.Id">
+                            <label class="control-label">Добавьте Slug</label>
+                            <input name="Slug" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Добавьте название модели</label>
+                            <input name="Name" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Добавте кортинку модели</label>
+                            <input type="file" name="fileToStorage" class="form-control" />
+                        </div>
+                        <div class="form-group" style="margin-top:1rem;">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <a asp-action="ModelModificationColors" class="btn btn-secondary btn-lg" style="margin-top: 3rem;">ADD MODIFICATION COLOR</a>
+</div>

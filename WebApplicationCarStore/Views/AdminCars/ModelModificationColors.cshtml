@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebApplicationCarStore.Data.Entities.ModificationColor>
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>ModificationColor</h4>
+
+<div class="row">
+    <div class="accordion-item" style="margin-top:3rem;">
+        <h2 class="accordion-header" id="hAddNew">
+            <button class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cAddNew"
+                    aria-expanded="true"
+                    aria-controls="cAddNew">
+                <h5 class="card-title">
+                    Добавить новый цвет
+                </h5>
+            </button>
+        </h2>
+
+        <div id="cAddNew"
+             class="accordion-collapse collapse show"
+             aria-labelledby="hAddNew">
+            <div class="accordion-body">
+                <form asp-action="CreateModificationColors" enctype="multipart/form-data">
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label name="Slug" class="control-label">Добавьте Slug</label>
+                        <input name="Slug" class="form-control" />
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label name="ModificationId" class="control-label">Выберите модификацию</label>
+                        <select name="ModificationId" class="form-control" asp-items="@ViewBag.Modifications"></select>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label name="ColorId" class="control-label">Выберите цвет</label>
+                        <select name="ColorId" class="form-control" asp-items="@ViewBag.Colors"></select>
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label name="ImgUrl" class="control-label">Добовьте фото модификаций в цвете</label>
+                        <input type="file" name="fileToStorage" class="form-control" />
+                    </div>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+

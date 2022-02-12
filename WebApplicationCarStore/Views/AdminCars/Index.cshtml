@@ -1,0 +1,70 @@
+﻿@model IEnumerable<WebApplicationCarStore.Data.Entities.Model>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Create</h1>
+
+<div class="row">
+
+
+    @foreach (var item in Model)
+    {
+        <div class="col-3">
+            <div class="card">
+                <img src="@Html.DisplayFor(modelItem => item.ImgUrl)" class="color_car card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                    <a asp-action="ModelModifications" asp-route-id="@item.Id" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    }
+
+    <a style="margin-top: 1rem;"></a>
+
+    <div class="accordion-item" style="margin-top:3rem;">
+        <h2 class="accordion-header" id="hAddNew">
+            <button class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#cAddNew"
+                    aria-expanded="true"
+                    aria-controls="cAddNew">
+                <h5 class="card-title">
+                    Добавить новую модель
+                </h5>
+            </button>
+        </h2>
+
+        <div id="cAddNew"
+             class="accordion-collapse collapse show"
+             aria-labelledby="hAddNew"
+            >
+            <div class="accordion-body">
+                <form asp-action="CreateModel" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label name="Slug" class="control-label">Добавьте Slug</label>
+                        <input name="Slug" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label name="Name" class="control-label">Добавьте название модели</label>
+                        <input name="Name" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label name="ImgUrl" class="control-label">Добавьте картинку модели</label>
+                        <input type="file" name="fileToStorage" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <a asp-action="ModelColors" class="btn btn-secondary btn-lg" style="margin-top: 3rem;">ADD COLORS</a>
+
+</div>

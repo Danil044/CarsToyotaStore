@@ -13,11 +13,16 @@ using WebApplicationCarStore.Data.Entities;
 
 namespace WebApplicationCarStore.Controllers.API_Auth
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    public class Person
+    {
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public string Role { get; set; }
+    }
+
     public class AdminAccountController : Controller
     {
-
+       
         private readonly ApplicationDbContext _context;// 
         private readonly PasswordHasher<MyIdentityUser> passwordHasher;
 
@@ -61,23 +66,37 @@ namespace WebApplicationCarStore.Controllers.API_Auth
         private ClaimsIdentity GetIdentity(string username, string password)
         {
             var person = _context.Users.FirstOrDefault(x => x.UserName == username && x.PasswordHash == password);
-            
-            if (person != null)
+
+            MyIdentityUser identityUser = null;
+            var users= _context.Users.Where(user => user.UserName == username);
+
+            foreach (var user in users)
             {
-                var claims = new List<Claim>
+                if (user.UserName == username && passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password) == PasswordVerificationResult.Success)
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, person.UserName),
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, "user")
-                };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
+                    identityUser = user;
+                    break;
+                }
             }
 
-            // если пользователя не найдено
-            return null;
-        }
+            if (identityUser == null)
+                return null;
 
+            var claims = new List<Claim>
+            {
+                 new Claim(ClaimsIdentity.DefaultNameClaimType, identityUser.UserName),
+                 new Claim(ClaimsIdentity.DefaultNameClaimType, "admin")
+            };
+
+
+            ClaimsIdentity claimsIdentity =
+            new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
+                ClaimsIdentity.DefaultRoleClaimType);
+
+
+            return new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
+        }
+    
     }
 }

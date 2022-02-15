@@ -11,19 +11,12 @@ using WebApplicationCarStore.Auth;
 using WebApplicationCarStore.Data;
 using WebApplicationCarStore.Data.Entities;
 
-namespace WebApplicationCarStore.Controllers.API_Auth
+namespace WebApplicationCarStore.Controllers.Auth
 {
-    public class Person
-    {
-        public string Login { get; set; }
-        public string Password { get; set; }
-        public string Role { get; set; }
-    }
-
     public class AdminAccountController : Controller
     {
        
-        private readonly ApplicationDbContext _context;// 
+        private readonly ApplicationDbContext _context;
         private readonly PasswordHasher<MyIdentityUser> passwordHasher;
 
 

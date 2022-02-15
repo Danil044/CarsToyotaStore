@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplicationCarStore.Controllers.API_Auth
+namespace WebApplicationCarStore.Controllers.Auth
 {
     [ApiController]
     [Route("api/[controller]")]

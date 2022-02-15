@@ -1,0 +1,178 @@
+{
+  "$id": "1",
+  "$values": [
+    {
+      "$id": "2",
+      "Id": "de35385e-91eb-4096-9b7f-8ed34b2a85a2",
+      "Slug": "COROLLA GR SPORT",
+      "Name": "COROLLA GR SPORT",
+      "ImgUrl": "/storage/modification_thumbs/2022/1/6295e8ab-2980-4640-b243-7e5eebe4cf04.png",
+      "Model": {
+        "$id": "3",
+        "Id": "a176c4c3-fc48-429d-8364-dca99010aca2",
+        "Slug": "corolla",
+        "Name": "COROLLA",
+        "ImgUrl": "/storage/modification_thumbs/2022/1/ad129e8e-333f-40d4-baea-d64b22b89469.png",
+        "Modifications": {
+          "$id": "4",
+          "$values": [
+            {
+              "$ref": "2"
+            },
+            {
+              "$id": "5",
+              "Id": "75e27db7-db60-42ee-b170-e4cbc1550071",
+              "Slug": "corolla-city",
+              "Name": "COROLLA CITY",
+              "ImgUrl": "/storage/modification_thumbs/2022/1/514c0d4f-a1b3-49a5-9dd2-2d3c6ebecabc.png",
+              "Model": {
+                "$ref": "3"
+              },
+              "ModelId": "a176c4c3-fc48-429d-8364-dca99010aca2",
+              "ModificationColors": {
+                "$id": "6",
+                "$values": [
+                  {
+                    "$id": "7",
+                    "Id": "39c70c17-2355-4d64-9b9d-cd4fc31f83d6",
+                    "Slug": "black-corolla-city",
+                    "Modification": {
+                      "$ref": "5"
+                    },
+                    "ModificationId": "75e27db7-db60-42ee-b170-e4cbc1550071",
+                    "Color": {
+                      "$id": "8",
+                      "Id": "5254e536-7c7f-48be-bd03-c93ae7fd7e11",
+                      "Slug": "black-218",
+                      "Name": "\u0427\u0451\u0440\u043D\u044B\u0439 \u043C\u0435\u0442\u0430\u043B\u043B\u0438\u043A(218)",
+                      "ImgUrl": "/storage/color_thumbs\\2022\\1\\2a934501-3928-49f5-ab18-4af7137bbd17.jpg",
+                      "ModificationColors": {
+                        "$id": "9",
+                        "$values": [
+                          {
+                            "$ref": "7"
+                          }
+                        ]
+                      }
+                    },
+                    "ColorId": "5254e536-7c7f-48be-bd03-c93ae7fd7e11",
+                    "ImgUrl": "/storage/modification_colors_thumbs/2022/1/9669a876-ad62-4b70-9d48-c0489cfd6c81.png",
+                    "ModificationColors": null
+                  }
+                ]
+              }
+            },
+            {
+              "$id": "10",
+              "Id": "8331e69e-f2c0-4f93-964a-f50182263b06",
+              "Slug": "COROLLA GR SPORT",
+              "Name": "COROLLA GR SPORT",
+              "ImgUrl": "/storage/modification_thumbs/2022/1/3c97ff6c-4817-45b7-9d45-7c02757d8668.png",
+              "Model": {
+                "$ref": "3"
+              },
+              "ModelId": "a176c4c3-fc48-429d-8364-dca99010aca2",
+              "ModificationColors": {
+                "$id": "11",
+                "$values": []
+              }
+            }
+          ]
+        }
+      },
+      "ModelId": "a176c4c3-fc48-429d-8364-dca99010aca2",
+      "ModificationColors": {
+        "$id": "12",
+        "$values": [
+          {
+            "$id": "13",
+            "Id": "3ddfd6a2-db26-48b4-980c-7822006e726d",
+            "Slug": "co",
+            "Modification": {
+              "$ref": "2"
+            },
+            "ModificationId": "de35385e-91eb-4096-9b7f-8ed34b2a85a2",
+            "Color": {
+              "$id": "14",
+              "Id": "72911cc1-0794-4dad-92aa-30b9f939b403",
+              "Slug": "\u0441\u0435\u0440\u043E-\u0433\u043E\u043B\u0443\u0431\u043E\u0439-\u043C\u0435\u0442\u0430\u043B\u0438\u043A-1\u041A3",
+              "Name": "\u0421\u0435\u0440\u043E-\u0433\u043E\u043B\u0443\u0431\u043E\u0439 \u043C\u0435\u0442\u0430\u043B\u0438\u043A 1\u041A3",
+              "ImgUrl": "/storage/color_thumbs/2022/1/50ebcce6-2e1e-43eb-9d7e-9db2102dea8c.png",
+              "ModificationColors": {
+                "$id": "15",
+                "$values": [
+                  {
+                    "$ref": "13"
+                  }
+                ]
+              }
+            },
+            "ColorId": "72911cc1-0794-4dad-92aa-30b9f939b403",
+            "ImgUrl": "/storage/modification_colors_thumbs/2022/2/1f2f1aef-2103-4bff-942c-237d3792f300.png",
+            "ModificationColors": null
+          },
+          {
+            "$id": "16",
+            "Id": "fa83ad93-2c4e-4ffb-9ed6-eb608b8157e0",
+            "Slug": "red-corolla-gr-sport",
+            "Modification": {
+              "$ref": "2"
+            },
+            "ModificationId": "de35385e-91eb-4096-9b7f-8ed34b2a85a2",
+            "Color": {
+              "$id": "17",
+              "Id": "57fb7865-d843-4008-80d8-57186dffbbcd",
+              "Slug": "red-101",
+              "Name": "Red",
+              "ImgUrl": "/storage/color_thumbs/2022/1/047e3157-7599-4207-a08c-43d1412b8c8e.jpg",
+              "ModificationColors": {
+                "$id": "18",
+                "$values": [
+                  {
+                    "$ref": "16"
+                  }
+                ]
+              }
+            },
+            "ColorId": "57fb7865-d843-4008-80d8-57186dffbbcd",
+            "ImgUrl": "/storage/modification_colors_thumbs/2022/1/c2ec1555-c4e9-4e5e-9f54-ed9a7f93baf3.png",
+            "ModificationColors": null
+          }
+        ]
+      }
+    },
+    {
+      "$ref": "5"
+    },
+    {
+      "$id": "19",
+      "Id": "bb5325bf-3a83-4f18-8956-e6e5c7e1ebf1",
+      "Slug": "rav-4-black",
+      "Name": "RAV 4 Black",
+      "ImgUrl": "/storage/modification_thumbs/2022/1/b79ab206-e376-4537-89d5-769e7d428b74.png",
+      "Model": {
+        "$id": "20",
+        "Id": "49124d38-2dda-42db-a6eb-df32c3476706",
+        "Slug": "rav-4",
+        "Name": "RAV4",
+        "ImgUrl": "/storage/models_thumbs/2022/1/87815fe0-4943-4d10-aa7b-3698d439aac0.png",
+        "Modifications": {
+          "$id": "21",
+          "$values": [
+            {
+              "$ref": "19"
+            }
+          ]
+        }
+      },
+      "ModelId": "49124d38-2dda-42db-a6eb-df32c3476706",
+      "ModificationColors": {
+        "$id": "22",
+        "$values": []
+      }
+    },
+    {
+      "$ref": "10"
+    }
+  ]
+}

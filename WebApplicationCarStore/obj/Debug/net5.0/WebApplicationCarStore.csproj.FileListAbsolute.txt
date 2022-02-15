@@ -193,3 +193,4 @@ D:\Программирование\ASP.NET CORE\WebApplicationCarStore\WebAppli
 D:\Программирование\ASP.NET CORE\WebApplicationCarStore\WebApplicationCarStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\Программирование\ASP.NET CORE\WebApplicationCarStore\WebApplicationCarStore\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\Программирование\ASP.NET CORE\WebApplicationCarStore\WebApplicationCarStore\obj\Debug\net5.0\Razor\Views\Home\Auth.cshtml.g.cs
+D:\Программирование\ASP.NET CORE\WebApplicationCarStore\WebApplicationCarStore\obj\Debug\net5.0\Razor\Views\AdminBackup\Index.cshtml.g.cs

@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Backups";
+}
+
+<div class="content-header text-center">
+    <div class="container">
+        <div class="row mb-2">
+            <h1 class="m-0">Backups</h1>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <h5 class="card-title">JSON backup</h5>
+                        <p class="card-text">
+                            <button id="createButton" class="btn btn-primary">Create</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card card-primary card-outline">
+                    <div class="card-body">
+                        <h5 class="card-title">Database</h5>
+                        <p class="card-text">
+                            <div class="form-group">
+                                <label>Backups</label>
+                                <select id="backups" class="form-control">
+                                   
+                                </select>
+                            </div>
+
+                            <button id="restoreButton" class="btn btn-primary">Restore</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let backupsSelect = document.getElementById("backups");
+    function getBackups() {
+        fetch("api/ApiBackups")
+            .then(res => res.json())
+            .then(backups => {
+                renderBackups(backups);
+            })
+            .catch(err => console.error(err))
+    }
+    function renderBackups(backups) {
+        backupsSelect.innerHTML = '';
+        for (var backup of backups) {
+            let option = document.createElement("option");
+            option.text = backup;
+            backupsSelect.appendChild(option);
+        }
+    }
+    document.getElementById("createButton").onclick = () => {
+        fetch("api/ApiStoreBackups")
+            .then(res => res.json())
+            .then(backup => {
+                console.log(backup);
+                let option = document.createElement("option");
+                option.text = backup;
+                backupsSelect.appendChild(option);
+            })
+            .catch(err => console.error(err));
+    };
+    document.getElementById("restoreButton").onclick = () => {
+        fetch("api/ApiStoreBackups/" + backupsSelect.options[backupsSelect.selectedIndex].text)
+            .then(res => res.json())
+            .then(backup => console.log(backup))
+            .catch(err => console.error(err));
+    }
+    getBackups();
+</script>

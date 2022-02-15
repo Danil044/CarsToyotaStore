@@ -28,8 +28,11 @@ namespace WebApplicationCarStore.Controllers
             //Будет работать при заходе на страницу
             //Helpers.Notification.Telegram.SendMessage($"Заявка от {callBack.Name}\nНомер телефона: {callBack.Phone}\n(30 секунд на ответ!)");
             //await Helpers.Notification.Mail.SendEmailAsync();
+
+            
             var d = new Helpers.DataBase.Dump.Create();
             d.DumpColors(_context);
+            
 
             return View();
         }
